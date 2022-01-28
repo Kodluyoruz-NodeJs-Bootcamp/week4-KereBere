@@ -1,7 +1,52 @@
 <%- include('partials/_head.ejs') %>
-    <%- include('partials/_navigation.ejs') %>
-        <div class="dashboard">
-            <h1>If you are here your JTW token is valid.</h1>
-        </div>
+<%- include('partials/_navigation.ejs') %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-        <%- include('partials/_footer') %>
+<div class="container-2 register">
+    <div class="row">
+
+        <div class="col-md-3 register-left">
+            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+            <h3>Hoşgeldin
+                <% if (user) { %>
+                    <%= user.name%>
+                        <% } else { %>
+                            <% } %>
+            </h3>
+        </div>
+        <div class="col-md-9 register-right">
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Eğer buradaysan uygulamam çalışıyor demektir. Yay! Aşagıdaki usere ait
+                        JWT tokendir. Test açısından res.app.locals a ekleyip ekrana yazdırdım.</h3>
+
+
+                    <div class="row register-form">
+                        <p class="token">
+                            <% if (token) { %>
+                                <%= token%>
+                                    <% } else { %>
+                                        <% } %>
+                        </p>
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+    <%- include('partials/_footer') %>
+            <!-- <p class="token">
+                                                                                                                                                                                                                                                                                                                                                                                <% if (token) { %>
+                                                                                                                                                                                                                                                                                                                                                                                    <%= token%>
+                                                                                                                                                                                                                                                                                                                                                                                        <% } else { %>
+                                                                                                                                                                                                                                                                                                                                                                                            <% } %>
+                                                                                                                                                                                                                                                                                                                                                                            </p>

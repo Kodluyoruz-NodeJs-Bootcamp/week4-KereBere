@@ -6,12 +6,9 @@ import pageRoute from './routes/pageRoute';
 import userRoute from './routes/userRoute';
 import cookieParser from 'cookie-parser';
 import { Request, Response, NextFunction } from 'express';
-import { connectDB } from './config/database';
 import { getConnection } from 'typeorm';
 import { TypeormStore } from 'typeorm-store';
 import { Session } from './entity/Session';
-require('./config/database').connect();
-import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
 const app = express();
