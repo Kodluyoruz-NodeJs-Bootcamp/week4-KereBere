@@ -64,6 +64,11 @@
   --bs-body-bg: #fff;
 }
 
+.toast-absolute{
+  position: absolute;
+  top: -50px;
+  z-index: 1;
+}
 *,
 *::before,
 *::after {
@@ -79,9 +84,15 @@
   width: 25px;
   margin-right: 15px;
   margin-left: 15px;
+  color: white;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  scroll-padding-top: 4.5rem;
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -595,9 +606,9 @@ progress {
 .blockquote > :last-child {
   margin-bottom: 0;
 }
-
+ 
 .blockquote-footer {
-  margin-top: -1rem;
+  margin-top: -auto;
   margin-bottom: 1rem;
   font-size: 0.875em;
   color: #6c757d;
@@ -641,6 +652,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
+  position: relative;
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
@@ -11294,9 +11306,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-html {
-  scroll-padding-top: 4.5rem;
-}
+ 
 
 .bg-black {
   background-color: #000 !important;
@@ -11542,7 +11552,7 @@ footer a:hover, footer a:active, footer a:focus {
 .masthead {
   background-color: #f8f9fa;
   padding-top: 9.5rem;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
 }
 .masthead .masthead-device-mockup {
   display: flex;

@@ -18,8 +18,9 @@ const createToken = (id: string) => {
 export const register: RequestHandler = async (req, res) => {
   try {
     UserController.newUser(req.body);
-    req.flash('success', 'Register successfull, please sign in.');
-    res.status(201).redirect('/login');
+
+    req.flash('created', 'User Created, please log in');
+    res.status(200).redirect('/login');
   } catch (err) {
     res.status(400).redirect('/register');
   }
@@ -48,17 +49,19 @@ export const login: RequestHandler = async (req, res) => {
     }
 
     const browserInfo = req.headers['user-agent'];
-    //   //* httpOnly: true add to cookie for security
+
+    req.session.browserInfo = browserInfo;
+    req.session.userId = user.id;
+
     const token = jwt.sign(
-      { userId: user.email, browserInfo: browserInfo },
+      { userId: user.id, browserInfo: browserInfo },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: '30s' }
     );
 
-    res.cookie('jwt', token);
-    req.flash('success', 'Login successfull');
-    req.session.token = token;
-    console.log(token);
+    //   //* httpOnly: true add to cookie for security
+    req.flash('log', 'Login successfull');
+    res.cookie('jwt', token, { httpOnly: true });
     res.status(200).redirect('/');
   } catch (err) {
     req.flash('error', 'Login Failed');
@@ -67,6 +70,8 @@ export const login: RequestHandler = async (req, res) => {
 };
 
 export const logout: RequestHandler = (req, res) => {
+  req.session.userId = '';
+  console.log('hehe');
   req.session.destroy(() => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/login');

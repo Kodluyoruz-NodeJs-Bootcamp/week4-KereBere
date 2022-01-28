@@ -11,6 +11,7 @@ import { redirect } from '../middlewares/redirectMiddleware';
 router.get('/', getIndexPage);
 router.route('/register').get(redirect, getRegisterPage);
 router.route('/login').get(redirect, getLoginPage);
-router.get('/dashboard', requireAuth, getDashboardPage);
+router.get('/dashboard',requireAuth,   getDashboardPage);
 
 export default router;
+// router.get('/dashboard', requireAuth, getDashboardPage);

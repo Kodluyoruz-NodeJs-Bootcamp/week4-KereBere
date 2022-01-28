@@ -4,8 +4,51 @@
         <%- include('partials/_navigation.ejs') %>
 
             <!-- Mashead header-->
+    
             <header class="masthead">
+                                
                 <div class="container px-5">
+                    <div class="toast-absolute">
+                        <% if(flashMessages) { %>
+                            <% if(flashMessages.success) { %>
+                                <%= flashMessages.success %>
+                                    <div class="toast bg-primary text-white fade show">
+                                        <div class="toast-header bg-success text-white">
+                                            <strong class="me-auto">Already logged in!</strong>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                                        </div>
+                                        <div class="toast-body">
+                                            <%= flashMessages.error %><a href="user/logout" class="text-white">Logout</a>
+                                        </div>
+                                    </div>
+                                    <% }else if(flashMessages.error) {%>
+                                        <%= flashMessages.log %>
+                    
+                                            <div class="toast bg-primary text-white fade show">
+                                                <div class="toast-header bg-success text-white">
+                                                    <strong class="me-auto">Already logged in!</strong>
+                                                    <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="toast"></button>
+                                                </div>
+                                                <div class="toast-body">
+                                                    <%= flashMessages.error %> <a href="user/logout" class="text-white">Logout</a>
+                                                </div>
+                                            </div>
+                                            <% }else if(flashMessages.log) {%>
+                                                <div class="toast bg-primary text-white fade show">
+                                                    <div class="toast-header bg-success text-white">
+                                                        <strong class="me-auto">Congragulation!</strong>
+                                                        <button type="button" class="btn-close btn-close-white"
+                                                            data-bs-dismiss="toast"></button>
+                                                    </div>
+                                                    <div class="toast-body">
+                                                        <%= flashMessages.log %><a href="/dashboard" class="text-white"> Go
+                                                                Dashboard</a>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                    <% } %>
+                    </div>
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6">
                             <!-- Mashead text and app badges-->
@@ -69,10 +112,8 @@
                 </div>
             </header>
 
+            
             <%- include('partials/_footer.ejs') %>
-
-
-
     </body>
 
     </html>

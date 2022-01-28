@@ -43,8 +43,78 @@
             <!-- Sign up form -->
             <section class="signup">
                 <div class="container-1">
+                    <div class="toast-login-absolute">
+                        <% if(flashMessages) { %>
+                            <% if(flashMessages.success) { %>
+                                <%= flashMessages.success %>
+                                    <div class="toast bg-primary text-white fade show">
+                                        <div class="toast-header bg-primary text-white">
+                                            <strong class="me-auto">Already logged in!</strong>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                                        </div>
+                                        <div class="toast-body">
+                                            <%= flashMessages.error %> <a href="user/logout" class="text-white">Logout</a>
+                                        </div>
+                                    </div>
+                                    <% }else if(flashMessages.error) {%>
+                                        <div class="toast bg-primary text-white fade show">
+                                            <div class="toast-header bg-primary text-white">
+                                                <strong class="me-auto">Alert!</strong>
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                                            </div>
+                                            <div class="toast-body">
+                                                <%= flashMessages.error %>
+                                            </div>
+                                        </div>
+                                        <% }else if(flashMessages.log) {%>
+                                            <div class="toast bg-primary text-white fade show">
+                                                <div class="toast-header bg-primary text-white">
+                                                    <strong class="me-auto">Congragulation!</strong>
+                                                    <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="toast"></button>
+                                                </div>
+                                                <div class="toast-body">
+                                                    <%= flashMessages.log %>
+                                                </div>
+                                            </div>
+                                            <% }else if(flashMessages.created) {%>
+                                                <div class="toast bg-primary text-white fade show">
+                                                    <div class="toast-header bg-primary text-white">
+                                                        <strong class="me-auto">Congragulation!</strong>
+                                                        <button type="button" class="btn-close btn-close-white"
+                                                            data-bs-dismiss="toast"></button>
+                                                    </div>
+                                                    <div class="toast-body">
+                                                        <%= flashMessages.created %>
+                                                    </div>
+                                                </div>
+                                                <% }else if(flashMessages.created) {%>
+                                                    <div class="toast bg-primary text-white fade show">
+                                                        <div class="toast-header bg-primary text-white">
+                                                            <strong class="me-auto">Congragulation!</strong>
+                                                            <button type="button" class="btn-close btn-close-white"
+                                                                data-bs-dismiss="toast"></button>
+                                                        </div>
+                                                        <div class="toast-body">
+                                                        </div>
+                                                    </div>
+                                                    <% }else if(flashMessages.jwt) {%>
+                                                        <div class="toast bg-danger text-white fade show">
+                                                            <div class="toast-header bg-danger text-white">
+                                                                <strong class="me-auto">Token Error</strong>
+                                                                <button type="button" class="btn-close btn-close-white"
+                                                                    data-bs-dismiss="toast"></button>
+                                                            </div>
+                                                            <div class="toast-body">
+                                                                <%= flashMessages.jwt %>
 
+                                                            </div>
+                                                            </div>
+                                                            <% } %>
+                                                                <% } %>
+                                                                    </div>
                     <div class="signin-content">
+
                         <div class="signin-image">
                             <figure><img src="images/signin-image.jpg" alt="sing up image"></figure>
                             <a href="/register" class="signup-image-link">Create an account</a>
@@ -52,18 +122,7 @@
 
                         <div class="signin-form">
                             <h2 class="form-title">Sign up</h2>
-                            <div class="error-div">
-                                <% if(flashMessages) { %>
-                                    <% if(flashMessages.success) { %>
-                                        <%= flashMessages.success %>
-                            </div>
-                            <div class="error-div">
-
-                                <% }else if(flashMessages.error) {%>
-                                    <%= flashMessages.error %>
-                                        <% } %>
-                                            <% } %>
-                            </div>
+                        
                             <form method="POST" class="register-form" id="login-form" action="user/login">
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>

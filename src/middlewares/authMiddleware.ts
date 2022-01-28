@@ -3,18 +3,19 @@ import User from '../models/User';
 import { RequestHandler } from 'express';
 
 //*Check & verify jwt validation
-export const requireAuth: RequestHandler = (req, res, next) => {
+export const requireAuth: RequestHandler = async (req, res, next) => {
   const token = req.cookies.jwt;
   try {
-    const decoded = jwt.verify(
+    const decoded = await jwt.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET as string
     );
     req.body = decoded;
+    console.log(req.body.decoded);
     next();
   } catch (err: any) {
-    req.flash('error', err.message);
-    req.session.userID = '';
-    res.redirect('/login');
+    req.flash('jwt', 'Invalid or expired token, please login');
+    req.session.userId = '';
+    return res.redirect('/login');
   }
 };

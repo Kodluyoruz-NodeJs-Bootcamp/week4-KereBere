@@ -3,7 +3,7 @@ let errors: Array<String> = [];
 export const getIndexPage: RequestHandler = (req, res) => {
   res.status(200).render('index', {
     pageName: 'Homepage',
-    token: req.session.token,
+    // token: req.session.token,
   });
 };
 

@@ -1,10 +1,15 @@
 /* @extend display-flex; */
 
-
  .error-div{
    position: absolute;
    left: 325px;
    top: 60px;
+ }
+ .toast-login-absolute{
+   position: absolute;
+   right: 5rem;
+   top: 5rem;
+   z-index: 2000;
  }
  
 display-flex, .display-flex, .display-flex-center, .signup-content, .signin-content, .social-login, .socials {
@@ -524,6 +529,7 @@ label.valid {
 
 @media screen and (max-width: 1200px) {
   .container-1 {
+    position: relative;
     width: calc( 100% - 30px);
     max-width: 100%; } }
 @media screen and (min-width: 1024px) {
