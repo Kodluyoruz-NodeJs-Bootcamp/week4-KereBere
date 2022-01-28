@@ -3,7 +3,9 @@ import { EntitySchema, getRepository, ObjectID } from 'typeorm';
 import { User } from '../entity/User';
 import { hash, compare } from 'bcryptjs';
 
-class UserController {
+export class UserController {
+  private userRepository = getRepository(User);
+
   static listAll = async (user: EntitySchema) => {
     const userRepository = getRepository(user);
     const users = await userRepository.find({
@@ -11,29 +13,34 @@ class UserController {
     });
   };
 
-  static getOneByEmail = async (email: User) => {
-    const userRepository = getRepository(User);
-    try {
-      const user = await userRepository.findOne({ where: { email: email } });
-      if (user) return user;
-      throw new Error('User does not exist');
-    } catch (error) {
-      throw new Error('Got no idea what just happened, user does not exist');
-    }
-  };
+  // static getOneByEmail = async (email: string, password: string) => {
+  //   try {
+  //     const user = await this.userRepository({ where: { email: email } });
+  //     compare(password, user.password, (err, same) => {
+  //       console.log(same);
+  //       if (same) {
+  //         return user;
+  //       } else {
+  //         throw 'Wrong password-UserController';
+  //       }
+  //     });
+  //   } catch (error) {
+  //     throw new Error('Got no idea what just happened, user does not exist');
+  //   }
+  // };
 
   static newUser = async (userBody: User) => {
     let { name, username, email, password } = userBody;
     let user = new User();
+    user.name = name;
+    user.username = username;
+    user.email = email;
+    user.password = await hash(password, 10);
+    const userRepository = getRepository(User);
     try {
-      user.name = name;
-      user.username = username;
-      user.email = email;
-      user.password = await hash(password, 10);
-      const userRepository = getRepository(User);
       await userRepository.save(user);
     } catch (e) {
-      throw new Error('An error occured while saving user');
+      throw new Error('An error occured while saving user.');
     }
   };
 

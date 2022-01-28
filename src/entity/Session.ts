@@ -9,6 +9,6 @@ export class Session extends BaseEntity implements SessionEntity {
   @Column()
   expiresAt: number;
 
-  @Column()
+  @Column('varchar', { length: 255 })
   data: string;
 }

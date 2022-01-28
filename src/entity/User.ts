@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
 
 @Entity()
 export class User extends BaseEntity {
@@ -16,4 +17,8 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
+    return bcrypt.compareSync(unencryptedPassword, this.password);
+  }
 }
