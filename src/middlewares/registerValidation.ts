@@ -3,6 +3,7 @@ import { body, validationResult } from 'express-validator';
 import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 
+//* If there are blank or invalid input show errors to the user 
 export const registerValidation: RequestHandler = async (req, res, next) => {
   const errors: Array<String> = validationResult(req)
     .array()
@@ -11,6 +12,8 @@ export const registerValidation: RequestHandler = async (req, res, next) => {
   errors.length > 0 ? res.render('register', { errors }) : next();
 };
 
+
+//* Check values comes from client for registration before sending them to register
 export const bodyValidation = [
   body('name').not().isEmpty().withMessage('Please enter your name'),
   body('username').not().isEmpty().withMessage('Please enter your username'),

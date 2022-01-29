@@ -22,6 +22,7 @@ createConnection()
     app.use(cookieParser());
     const repository = getConnection().getRepository(Session);
 
+    //* Using session with TypeORM
     app.use(
       session({
         secret: 'secret',
@@ -30,6 +31,7 @@ createConnection()
         store: new TypeormStore({ repository }),
       })
     );
+    //* Flash middleware for showing toasts
     app.use(flash());
     app.use((req: Request, res: Response, next: NextFunction) => {
       res.locals.flashMessages = req.flash();

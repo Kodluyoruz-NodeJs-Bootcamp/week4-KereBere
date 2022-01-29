@@ -1,1 +1,0 @@
-{"version":3,"file":"redirectMiddleware.js","sourceRoot":"","sources":["../../src/middlewares/redirectMiddleware.ts"],"names":[],"mappings":";;;AACO,MAAO,QAAQ,GAAqB,CAAC,GAAG,EAAE,GAAG,EAAE,IAAI,EAAE,EAAE;IAC5D,IAAI,GAAG,CAAC,OAAO,CAAC,MAAM,EAAE;QACtB,OAAO,GAAG,CAAC,QAAQ,CAAC,GAAG,CAAC,CAAC;KAC1B;IACD,IAAI,EAAE,CAAC;AACT,CAAC,CAAC;AALY,QAAA,QAAQ,YAKpB"}

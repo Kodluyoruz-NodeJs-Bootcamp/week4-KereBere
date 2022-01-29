@@ -4,8 +4,6 @@ import { User } from '../entity/User';
 import { hash, compare } from 'bcryptjs';
 
 export class UserController {
-  private userRepository = getRepository(User);
-
   static listAll = async (user: EntitySchema) => {
     const userRepository = getRepository(user);
     const users = await userRepository.find({
@@ -13,21 +11,21 @@ export class UserController {
     });
   };
 
-  // static getOneByEmail = async (email: string, password: string) => {
-  //   try {
-  //     const user = await this.userRepository({ where: { email: email } });
-  //     compare(password, user.password, (err, same) => {
-  //       console.log(same);
-  //       if (same) {
-  //         return user;
-  //       } else {
-  //         throw 'Wrong password-UserController';
-  //       }
-  //     });
-  //   } catch (error) {
-  //     throw new Error('Got no idea what just happened, user does not exist');
-  //   }
-  // };
+  static getOneByEmail = async (email: string, password: string) => {
+    try {
+      const user = await User.findOneOrFail({ where: { email: email } });
+      compare(password, user.password, (err, same) => {
+        console.log(same);
+        if (same) {
+          return user;
+        } else {
+          throw 'Wrong password-UserController';
+        }
+      });
+    } catch (error) {
+      throw new Error('Got no idea what just happened, user does not exist');
+    }
+  };
 
   static newUser = async (userBody: User) => {
     let { name, username, email, password } = userBody;
@@ -36,9 +34,8 @@ export class UserController {
     user.username = username;
     user.email = email;
     user.password = await hash(password, 10);
-    const userRepository = getRepository(User);
     try {
-      await userRepository.save(user);
+      await User.save(user);
     } catch (e) {
       throw new Error('An error occured while saving user.');
     }
@@ -56,15 +53,6 @@ export class UserController {
       res.status(404).send('User not found');
       return;
     }
-
-    // user.username = username;
-    // user.role = role;
-    // const errors = await validate(user);
-    // if (errors.length > 0) {
-    //   res.status(400).send(errors);
-    //   return;
-    // }
-
     try {
       await userRepository.save(user);
     } catch (e) {

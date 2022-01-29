@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-let errors: Array<String> = [];
+
 export const getIndexPage: RequestHandler = (req, res) => {
   res.app.locals.created = false;
   res.app.locals.logout = false;
@@ -7,13 +7,6 @@ export const getIndexPage: RequestHandler = (req, res) => {
     pageName: 'Homepage',
   });
 };
-
-// export const getAuthPage: RequestHandler = (req, res) => {
-//   res.status(200).render('auth', {
-//     pageName: 'Auth',
-//     errors,
-//   });
-// };
 export const getRegisterPage: RequestHandler = (req, res) => {
   res.app.locals.logout = false;
   res.status(200).render('register', {
@@ -23,8 +16,8 @@ export const getRegisterPage: RequestHandler = (req, res) => {
 };
 export const getLoginPage: RequestHandler = (req, res) => {
   res.status(200).render('login', {
-    pageName: 'Login',
-    errors,
+    pageName: 'Sign In',
+    created: false,
   });
 };
 
@@ -37,3 +30,5 @@ export const getDashboardPage: RequestHandler = (req, res) => {
     token: token,
   });
 };
+
+let errors: Array<String> = [];
