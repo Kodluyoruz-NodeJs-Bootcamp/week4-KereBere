@@ -3,7 +3,7 @@ import { body, validationResult } from 'express-validator';
 import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 
-//* If there are blank or invalid input show errors to the user 
+//* If there are blank or invalid input show errors to the user   
 export const registerValidation: RequestHandler = async (req, res, next) => {
   const errors: Array<String> = validationResult(req)
     .array()

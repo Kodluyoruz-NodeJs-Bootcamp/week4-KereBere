@@ -63,6 +63,14 @@
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
 }
+ 
+.button-wrap{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: auto;
+}
+
 .dashboard{
   display: flex;
   word-wrap: break-word;
@@ -78,7 +86,6 @@
 
 .toast-absolute{
   position: absolute;
-  top: -50px;
   z-index: 1;
 }
 .container-2 {
@@ -786,6 +793,12 @@ progress {
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
+  }
+  .button-wrap{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    padding: auto;
   }
 }
 @media (min-width: 1200px) {
@@ -11664,7 +11677,7 @@ footer a:hover, footer a:active, footer a:focus {
 
 .masthead {
   background-color: #f8f9fa;
-  padding-top: 9.5rem;
+  padding-top: 6rem;
   /* padding-bottom: 5rem; */
 }
 .masthead .masthead-device-mockup {

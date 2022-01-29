@@ -15,9 +15,14 @@ export const getRegisterPage: RequestHandler = (req, res) => {
   });
 };
 export const getLoginPage: RequestHandler = (req, res) => {
+  let created = false;
+  if (res.app.locals.created) {
+    created = true;
+  }
+
   res.status(200).render('login', {
     pageName: 'Sign In',
-    created: false,
+    created: created,
   });
 };
 

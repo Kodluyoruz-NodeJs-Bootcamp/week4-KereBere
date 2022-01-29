@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 import { RequestHandler } from 'express';
-import { getRepository } from 'typeorm';
 import { User } from '../entity/User';
 import UserController from './UserController';
 
@@ -41,7 +40,7 @@ export const login: RequestHandler = async (req, res) => {
     req.session.browserInfo = browserInfo;
     req.session.userId = user.id;
 
-    //* Create JWT Token 
+    //* Create JWT Token
     const token = jwt.sign(
       { userId: user.id, browserInfo: browserInfo },
       process.env.ACCESS_TOKEN_SECRET,
@@ -54,6 +53,7 @@ export const login: RequestHandler = async (req, res) => {
     //* Add token & user to locals for demo purposes
     req.app.locals.token = token;
     req.app.locals.user = user;
+    req.app.locals.created = true;
 
     //* Set token to client's cookie
     res.cookie('jwt', token, { httpOnly: true });
@@ -67,6 +67,7 @@ export const login: RequestHandler = async (req, res) => {
 //* Logout & delete session
 export const logout: RequestHandler = (req, res) => {
   req.app.locals.logout = true;
+  req.app.locals.created = false;
   req.session.destroy(() => {
     res.clearCookie('connect.sid', { path: '/' });
     res.redirect('/login');
