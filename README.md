@@ -45,7 +45,7 @@ Sunucuyu çalıştırın
   
 ## Envoirement Variables
 
-Add these to your .env file to run the project
+Configure your .env file with variables below to run the project
 ```
 ACCESS_TOKEN_SECRET
 TYPEORM_CONNECTION
